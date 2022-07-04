@@ -11,6 +11,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.example.demo.common.jwt.JwtException;
+import com.example.demo.common.jwt.JwtManager;
 
 @Component
 @Aspect
@@ -32,10 +33,14 @@ public class AuthAspect {
 			System.out.println("token null or empty");
 			throw new JwtException();
 		} else {
-			Object ret = joinPoint.proceed();
-
-			return ret;
+			System.out.println("token check");
+			JwtManager jwtManager = new JwtManager();
+			jwtManager.checkJwtToken(token);
 		}
+
+		Object ret = joinPoint.proceed();
+
+		return ret;
 	}
 
 //	@Around("@annotation(NeedTokenInController)")

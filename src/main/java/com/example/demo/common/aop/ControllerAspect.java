@@ -14,8 +14,11 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.example.demo.common.jwt.JwtException;
+import com.example.demo.common.jwt.JwtManager;
 import com.example.demo.common.model.RequestLogModel;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 @Aspect
 public class ControllerAspect {
@@ -27,7 +30,7 @@ public class ControllerAspect {
 
 	@Around("controllerPointcut()")
 	public Object controllerLog(ProceedingJoinPoint joinPoint) throws Throwable {
-		System.out.println("api 수행 위치 및 url 정보 aop");
+		log.info("api 수행 위치 및 url 정보 aop");
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
 				.getRequest();
 
@@ -44,21 +47,21 @@ public class ControllerAspect {
 		String requestUrl = request.getRequestURI();
 		String requestMethodType = request.getMethod();
 
-		RequestLogModel log = new RequestLogModel(controllerName, methodName, requestUrl, requestMethodType);
+		RequestLogModel logModel = new RequestLogModel(controllerName, methodName, requestUrl, requestMethodType);
 
-		System.out.println(log);
+		log.info(logModel.toString());
 	}
 
 	/**
 	 * 클레스용 jwt 인증 체크.. 클래스 annotation 인경우 Pointcut을 사용해서 해야함.. ...이유는 찾아봐야함 -_-
+	 * @throws Throwable 
 	 */
 	private void controllerJwtCheck(ProceedingJoinPoint joinPoint) {
 		System.out.println("jwt 인증 체크 aop");
-
 		var controller = joinPoint.getSignature().getDeclaringType();
 //		System.out.println(controller.getName());
 
-		Annotation tokenAnnotation = controller.getAnnotation(NeedTokenInController.class);
+		Annotation tokenAnnotation = controller.getAnnotation(NeedToken.class);
 
 		if (tokenAnnotation != null) {
 			System.out.println(tokenAnnotation);
@@ -66,15 +69,18 @@ public class ControllerAspect {
 					.getRequest();
 
 			String token = request.getHeader("jwt-token");
-			System.out.println("token => " + token);
+			log.info("token => " + token);
 
 			if (StringUtils.isEmpty(token)) {
 				System.out.println("token null or empty");
 				throw new JwtException();
+			} else {
+				JwtManager jwtManager = new JwtManager();
+				jwtManager.checkJwtToken(token);
 			}
-			System.out.println("jwt 인증 체크 OK");
+			log.info("jwt 인증 체크 OK");
 		} else {
-			System.out.println("jwt 인증 체크 PASS");
+			log.info("jwt 인증 체크 PASS");
 		}
 	}
 

@@ -1,14 +1,14 @@
 package com.example.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.common.aop.NeedToken;
 import com.example.demo.common.aop.RunningLog;
+import com.example.demo.common.jwt.JwtException;
 import com.example.demo.common.jwt.JwtManager;
 
 @RestController
@@ -30,7 +30,8 @@ public class JwtController {
 	}
 	
 	@GetMapping("/check")
-	public String checkToken(@RequestHeader(value="jwt-token") String jwtToken) {
+	@NeedToken
+	public String checkToken(@RequestHeader(value="jwt-token", required = false) String jwtToken) {
 		System.out.println(jwtToken);
 		return jwtManager.getUserIdFromToken(jwtToken);
 	}
