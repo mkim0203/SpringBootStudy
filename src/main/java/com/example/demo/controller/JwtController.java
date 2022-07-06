@@ -12,8 +12,8 @@ import com.example.demo.common.jwt.JwtException;
 import com.example.demo.common.jwt.JwtManager;
 
 /**
- * 
- * @author mhkim
+ * jwt 인증관련
+ * @author mkim
  *
  */
 @RestController
@@ -27,6 +27,12 @@ public class JwtController {
 		jwtManager = new JwtManager();
 	}
 	
+	/**
+	 * jwt 인증 token 생성
+	 * @param userId
+	 * @param pw
+	 * @return
+	 */
 	@RunningLog
 	@GetMapping("/auth")
 	public String CreateToken(@RequestParam(required = true) String userId, @RequestParam(required = true) String pw) {
