@@ -11,6 +11,11 @@ import com.example.demo.common.aop.RunningLog;
 import com.example.demo.common.jwt.JwtException;
 import com.example.demo.common.jwt.JwtManager;
 
+/**
+ * 
+ * @author mhkim
+ *
+ */
 @RestController
 @RequestMapping("/jwt")
 public class JwtController {

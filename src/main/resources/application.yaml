@@ -1,0 +1,14 @@
+# yaml 프로퍼티 테스트...
+
+appsetting:
+  project-name: Spring Boot Study
+  aaaa: bbb
+  model-data:
+    item1: 11
+    item2: "22"
+    list-data: [aa,bb]
+    list-data2:
+      - cc
+      - dd
+  
+  
