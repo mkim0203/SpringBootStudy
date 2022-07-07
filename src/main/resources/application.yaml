@@ -13,3 +13,10 @@ appsetting:
   
 jwt:
   key: "123456789a00!!"
+  
+  
+# 테스트 코드 로그레벨 설정
+logging:
+  level:
+    com.example.demo.test: trace
+    com.example.demo: info

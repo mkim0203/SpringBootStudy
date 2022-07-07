@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.test;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,6 +8,7 @@ class SpringBootStudyApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("TEST JUNIT");
 	}
 
 }
