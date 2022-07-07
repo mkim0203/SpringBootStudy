@@ -11,4 +11,5 @@ appsetting:
       - cc
       - dd
   
-  
+jwt:
+  key: "123456789a00!!"

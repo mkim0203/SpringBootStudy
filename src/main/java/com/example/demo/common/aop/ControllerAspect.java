@@ -9,6 +9,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -22,6 +23,9 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Aspect
 public class ControllerAspect {
+	@Autowired
+	JwtManager jwtManager;
+	
 	// controller 수행시 로그 출력.
 	@Pointcut("execution(* com.example.demo.controller.*.*(..))")
 	public void controllerPointcut() {
@@ -75,7 +79,7 @@ public class ControllerAspect {
 				System.out.println("token null or empty");
 				throw new JwtException();
 			} else {
-				JwtManager jwtManager = new JwtManager();
+				//JwtManager jwtManager = new JwtManager();
 				jwtManager.checkJwtToken(token);
 			}
 			log.info("jwt 인증 체크 OK");

@@ -6,12 +6,12 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 토큰 확인용 annotation
- * class, method 에 설정
- * @author mhkim
+ * 토큰 확인용 annotation class, method 에 설정
+ * 
+ * @author mkim
  *
  */
-@Target({ElementType.METHOD, ElementType.TYPE })
+@Target({ ElementType.METHOD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NeedToken {
 

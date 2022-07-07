@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
 
+import com.example.demo.common.jwt.JwtAuthException;
 import com.example.demo.common.jwt.JwtException;
 import com.example.demo.common.model.ResultModel;
 import com.example.demo.model.DataNotFoundException;
@@ -60,6 +61,16 @@ public class ExceptionAdvice {
 		System.out.println("runtimeHandler");
 		ResultModel<String> retValue = new ResultModel<String>();
 		retValue.setCode("RUNTIME_ERROR");
+		retValue.setData(ex.getMessage());
+		return retValue;
+	}
+	
+	@ResponseBody
+	@ExceptionHandler(JwtAuthException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	ResultModel<String> jwtAuthHandler(JwtAuthException ex) {
+		ResultModel<String> retValue = new ResultModel<String>();
+		retValue.setCode("FAIL_JWT_AUTH");
 		retValue.setData(ex.getMessage());
 		return retValue;
 	}

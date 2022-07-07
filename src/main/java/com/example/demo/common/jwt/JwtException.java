@@ -1,5 +1,10 @@
 package com.example.demo.common.jwt;
 
+/**
+ * 잘못된 token 시 오류 처리용
+ * @author mkim
+ *
+ */
 public class JwtException extends RuntimeException {
 	/**
 	 * 

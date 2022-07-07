@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -12,16 +13,12 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
 public class JwtManager {
-	private final String securityKey = "hello world"; // TODO 민감정보는 따로 분리하는 것이 좋다
+	@Value("${jwt.key}")
+	String securityKey;
 	private final Long expiredTime = 1000 * 60L * 30L;// 유효시간
 
-	/**
-	 * 
-	 *
-	 * @param member Member 정보를 담은 객체
-	 * @return String JWT 토큰
-	 */
 	public String generateJwtToken(String userId, String role) {
+		System.out.println(securityKey);
 		Date now = new Date();
 		return Jwts.builder().setSubject(userId) // 보통 username
 				.setHeader(createHeader()).setClaims(createClaims(userId, role)) // 클레임, 토큰에 포함될 정보
@@ -40,8 +37,6 @@ public class JwtManager {
 	/**
 	 * 클레임(Claim)을 생성한다.
 	 *
-	 * @param member 토큰을 생성하기 위한 계정 정보를 담은 객체
-	 * @return Map<String, Object> 클레임(Claim)
 	 */
 	private Map<String, Object> createClaims(String userId, String role) {
 		Map<String, Object> claims = new HashMap<>();
