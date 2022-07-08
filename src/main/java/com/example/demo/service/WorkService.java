@@ -2,16 +2,19 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import com.example.demo.model.DataNotFoundException;
 import com.example.demo.model.Work;
 import com.example.demo.repository.WorkRepository;
 
 @Service
+@Validated
 public class WorkService implements IWorkService {
 
 	@Autowired
@@ -84,5 +87,12 @@ public class WorkService implements IWorkService {
 			throw new DataNotFoundException(workNumber);
 		}
 	}
+
+	@Override
+	public void test(Work model) {
+		// TODO Auto-generated method stub
+		System.out.println("test");
+	}
+
 
 }
