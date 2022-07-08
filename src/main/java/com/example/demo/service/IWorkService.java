@@ -2,7 +2,8 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import org.springframework.lang.NonNull;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.validation.annotation.Validated;
 
 import com.example.demo.model.DataNotFoundException;
@@ -17,11 +18,11 @@ public interface IWorkService {
 
 	public Work get(int workNumber);
 
-	public void insert(@NonNull Work model) throws Exception;
+	public void insert(@NotNull Work model) throws Exception;
 
-	public void update(@NonNull Work model) throws DataNotFoundException;
+	public void update(@NotNull Work model) throws DataNotFoundException;
 
 	public void delete(int workNumber) throws DataNotFoundException;
 	
-	public void test(@NonNull Work model);
+	public void test(@NotNull Work model);
 }
