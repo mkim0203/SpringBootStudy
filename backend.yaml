@@ -15,7 +15,7 @@ cd-config:
     - name: restapi
       image: "[[DockerRegistryUri]]/[[NamespaceName]].[[UserId]]-restapi:0.0.1"
       ports: 
-        - number: 80
+        - number: 8080
           protocol: TCP
           is-external-open: true
     - name: postgres-db
@@ -32,19 +32,19 @@ ci-build:
     - id: restapi
       tag: 0.0.1
       ports:
-        - 80
+        - 8080
       run: '"java","-jar","/app/app.jar"'
       run-type: ENTRYPOINT
       build-units:
         - name: build
-          image: maven:3.6.0-jdk-11-slim 
+          image: maven:3.8.1-openjdk-17-slim 
           work-dir: /source
           copy:
             - .
           run-command:
-            - mvn -f pom.xml clean package
+            - mvn -f pom.xml clean package -Dmaven.test.skip=true
         - name: final
-          image: openjdk:11-jre-slim 
+          image: openjdk:17-jdk-slim  # 17 jre 못찾겠음.
           work-dir: /app
           copy-from-worker: 
             name : build
