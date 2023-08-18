@@ -1,0 +1,53 @@
+# back end api 통해서 배포할때 쓰일 yaml 정보입니다.
+# yaml 정보에 있는 약어들은 배포진행될때 치환되어 데이터가 넣어집니다.
+global-config:
+  version: "1.1"
+  id: "[[UserId]]"
+ci-config:
+  used: true
+  build-type: buildx
+  remote-uri: "[[DockerRegistryUri]]"
+  user-name: "[[DockerRegistryUserName]]"
+  pass-word: "[[DockerRegistryPassword]]"
+cd-config:
+  namespace-name: "[[NamespaceName]]"
+  docker-list:
+    - name: restapi
+      image: "[[DockerRegistryUri]]/[[NamespaceName]].[[UserId]]-restapi:0.0.1"
+      ports: 
+        - number: 80
+          protocol: TCP
+          is-external-open: true
+    - name: postgres-db
+      image: "postgres:15.3"
+      ports: 
+        - number: 5432
+          protocol: TCP
+          is-external-open: true
+      environment:
+        - name: POSTGRES_PASSWORD
+          value: test-1
+ci-build:
+  work-list:
+    - id: restapi
+      tag: 0.0.1
+      ports:
+        - 80
+      run: '"java","-jar","/app/app.jar"'
+      run-type: ENTRYPOINT
+      build-units:
+        - name: build
+          image: maven:3.6.0-jdk-11-slim 
+          work-dir: /source
+          copy:
+            - .
+          run-command:
+            - mvn -f pom.xml clean package
+        - name: final
+          image: openjdk:11-jre-slim 
+          work-dir: /app
+          copy-from-worker: 
+            name : build
+            dir: /source/target
+          etc-command:
+            - COPY --from=build-img /source/target/*SNAPSHOT.jar app.jar
