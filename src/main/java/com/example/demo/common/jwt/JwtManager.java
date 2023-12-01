@@ -52,6 +52,8 @@ public class JwtManager {
 	 * @return Claims 클레임
 	 */
 	private Claims getClaims(String token) {
+		System.out.println("run Claims");
+		System.out.println("securityKey =>" +securityKey);
 		return Jwts.parser().setSigningKey(securityKey).parseClaimsJws(token).getBody();
 	}
 

@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -16,6 +17,9 @@ import com.example.demo.common.jwt.JwtManager;
 @Component
 @Aspect
 public class AuthAspect {
+
+	@Autowired
+	JwtManager jwtManager;
 	/**
 	 * 메서드용 jwt 인증 체크.
 	 */
@@ -34,7 +38,8 @@ public class AuthAspect {
 			throw new JwtException();
 		} else {
 			System.out.println("token check");
-			JwtManager jwtManager = new JwtManager();
+			//JwtManager jwtManager = new JwtManager();
+			// di 해줘야 함. 안하면 JwtManager 네부에서 사용하는 config 정보들 로드하지 못함.
 			jwtManager.checkJwtToken(token);
 		}
 

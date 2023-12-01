@@ -14,6 +14,7 @@ public class SpringBootStudyApplication {
 	public static void main(String[] args) {
 		logger.info("Start ~~!");
 		SpringApplication.run(SpringBootStudyApplication.class, args);
+
 	}
 
 }
