@@ -14,6 +14,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.example.demo.common.jwt.JwtException;
 import com.example.demo.common.jwt.JwtManager;
 
+import java.util.Objects;
+
 @Component
 @Aspect
 public class AuthAspect {
@@ -27,7 +29,7 @@ public class AuthAspect {
 	public Object jwtTokenValid(ProceedingJoinPoint joinPoint) throws Throwable {
 
 		System.out.println("start => jwtTokenValid ");
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+		HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes()))
 				.getRequest();
 
 		String token = request.getHeader("jwt-token");

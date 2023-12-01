@@ -15,11 +15,12 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JwtManager {
 	@Value("${jwt.key}")
 	String securityKey;
-	private final Long expiredTime = 1000 * 60L * 30L;// 유효시간
 
 	public String generateJwtToken(String userId, String role) {
 		System.out.println(securityKey);
 		Date now = new Date();
+		// 유효시간
+		long expiredTime = 1000 * 60L * 30L;
 		return Jwts.builder().setSubject(userId) // 보통 username
 				.setHeader(createHeader()).setClaims(createClaims(userId, role)) // 클레임, 토큰에 포함될 정보
 				.setExpiration(new Date(now.getTime() + expiredTime)) // 만료일
@@ -61,7 +62,7 @@ public class JwtManager {
 		try {
 			getClaims(token);
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println(e.toString());
 			throw new JwtException();
 		}
 	}
