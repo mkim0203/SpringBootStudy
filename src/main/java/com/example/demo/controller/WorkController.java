@@ -2,7 +2,8 @@ package com.example.demo.controller;
 
  import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+ import com.example.demo.common.model.ResultCode;
+ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,7 +61,8 @@ public class WorkController {
 		if(data != null && data.size() > 0) {
 			System.out.println(data.size());
 			retValue.setData(data);
-			retValue.setCode("SUCCES");
+			retValue.setCode(ResultCode.SUCCESS);
+//			retValue.setCode("SUCCES");
 			
 			return new ResponseEntity<BaseResultModel>(retValue, HttpStatus.OK);
 		} else 

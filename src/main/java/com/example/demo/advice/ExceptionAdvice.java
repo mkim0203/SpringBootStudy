@@ -1,5 +1,6 @@
 package com.example.demo.advice;
 
+import com.example.demo.common.model.ResultCode;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,7 +27,8 @@ public class ExceptionAdvice {
 	ResultModel<String> employeeNotFoundHandler(EmployeeNotFoundException ex) {
 		System.out.println("employeeNotFoundHandler");
 		ResultModel<String> retValue = new ResultModel<String>();
-		retValue.setCode("NOT_FOUND");
+		retValue.setCode(ResultCode.NOT_FOUND);
+//		retValue.setCode("NOT_FOUND");
 		retValue.setData("employee not found 에러 => " + ex.getMessage());
 		return retValue;
 	}
@@ -37,7 +39,8 @@ public class ExceptionAdvice {
 	ResultModel<String> notFoundHandler(DataNotFoundException ex) {
 		System.out.println("notFoundHandler");
 		ResultModel<String> retValue = new ResultModel<String>();
-		retValue.setCode("NOT_FOUND");
+		retValue.setCode(ResultCode.NOT_FOUND);
+//		retValue.setCode("NOT_FOUND");
 		retValue.setData(ex.getMessage());
 		return retValue;
 
@@ -49,7 +52,8 @@ public class ExceptionAdvice {
 	ResultModel<String> jwtHandler(JwtException ex) {
 		System.out.println("jwtHandler");
 		ResultModel<String> retValue = new ResultModel<String>();
-		retValue.setCode("FAIL_JWT_TOKEN");
+		retValue.setCode(ResultCode.FAIL_JWT_TOKEN);
+//		retValue.setCode("FAIL_JWT_TOKEN");
 		retValue.setData(ex.getMessage());
 		return retValue;
 	}
@@ -60,7 +64,8 @@ public class ExceptionAdvice {
 	ResultModel<String> runtimeHandler(JwtException ex) {
 		System.out.println("runtimeHandler");
 		ResultModel<String> retValue = new ResultModel<String>();
-		retValue.setCode("RUNTIME_ERROR");
+		retValue.setCode(ResultCode.RUNTIME_ERROR);
+//		retValue.setCode("RUNTIME_ERROR");
 		retValue.setData(ex.getMessage());
 		return retValue;
 	}
@@ -70,7 +75,8 @@ public class ExceptionAdvice {
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	ResultModel<String> jwtAuthHandler(JwtAuthException ex) {
 		ResultModel<String> retValue = new ResultModel<String>();
-		retValue.setCode("FAIL_JWT_AUTH");
+		retValue.setCode(ResultCode.FAIL_JWT_AUTH);
+//		retValue.setCode("FAIL_JWT_AUTH");
 		retValue.setData(ex.getMessage());
 		return retValue;
 	}
@@ -80,8 +86,9 @@ public class ExceptionAdvice {
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	ResultModel<String> serverError(Exception ex) {
 		System.out.println("serverError");
-		ResultModel<String> retValue = new ResultModel<String>();
-		retValue.setCode("FAIL");
+		ResultModel<String> retValue = new ResultModel<>();
+		retValue.setCode(ResultCode.FAIL);
+//		retValue.setCode("FAIL");
 		retValue.setData(ex.getMessage());
 		return retValue;
 	}
