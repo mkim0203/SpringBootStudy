@@ -19,4 +19,4 @@ jwt:
 logging:
   level:
     com.example.demo.test: trace
-    com.example.demo: info
+    com.example.demo: DEBUG

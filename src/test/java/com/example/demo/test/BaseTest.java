@@ -9,6 +9,10 @@ public class BaseTest {
 		log.trace("테스트 코드 로그 출력 ==>");
 		log.trace(message);
 	}
+
+	public void WriteDebug(Object obj) {
+		log.debug(obj.toString());
+	}
 	
 	public void WriteLog(Object obj) {
 		log.trace("테스트 코드 로그 출력 (object) ==>");

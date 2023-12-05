@@ -13,6 +13,8 @@ import com.example.demo.common.model.ResultModel;
 import com.example.demo.model.DataNotFoundException;
 import com.example.demo.model.EmployeeNotFoundException;
 
+import javax.validation.ConstraintViolationException;
+
 @ControllerAdvice
 public class ExceptionAdvice {
 	/*
@@ -81,6 +83,18 @@ public class ExceptionAdvice {
 		return retValue;
 	}
 
+
+	@ResponseBody
+	@ExceptionHandler(ConstraintViolationException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	ResultModel<String> validError(ConstraintViolationException validEx) {
+		System.out.println("validError");
+		ResultModel<String> retValue = new ResultModel<>();
+		retValue.setCode(ResultCode.FAIL_VALID);
+		retValue.setData(validEx.getMessage());
+		return retValue;
+	}
+
 	@ResponseBody
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -92,5 +106,6 @@ public class ExceptionAdvice {
 		retValue.setData(ex.getMessage());
 		return retValue;
 	}
+
 }
 
