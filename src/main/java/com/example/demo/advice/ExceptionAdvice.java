@@ -63,7 +63,7 @@ public class ExceptionAdvice {
 	@ResponseBody
 	@ExceptionHandler(RuntimeException.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	ResultModel<String> runtimeHandler(JwtException ex) {
+	ResultModel<String> runtimeHandler(RuntimeException ex) {
 		System.out.println("runtimeHandler");
 		ResultModel<String> retValue = new ResultModel<String>();
 		retValue.setCode(ResultCode.RUNTIME_ERROR);
