@@ -27,15 +27,12 @@ public class EmployeeController {
   }
 
 
-  // Aggregate root
-  // tag::get-aggregate-root[]
   @ApiOperation(value="전체 조회", notes="사용자 전체 조회")
   @GetMapping("/api/employees")
   List<Employee> all() {
     return repository.findAll();
   }
-  // end::get-aggregate-root[]
-  
+
 
   @ApiOperation(value="조회", notes="사용자 조회")
   @GetMapping("/api/employees/{id}")

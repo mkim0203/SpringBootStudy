@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.Work;
 
-@Repository
 public interface WorkRepository  extends JpaRepository<Work, Integer> {
 	public Work findByWorkNumber(int workNumber);
 	public List<Work> findByWorkNameLike(String likeWorkName);

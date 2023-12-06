@@ -18,23 +18,23 @@ import com.example.demo.model.Work;
 @RequestMapping("/api")
 public class RestHelloController {
 	/**
-	 * aaaa
+	 *
 	 */
 	@GetMapping("/test")
 	public String apiWorkGet(@RequestParam String name) {
 		
-		return "get 요청 => /api/hello name => %s".formatted(name == null ? "[null data]" : name);
+		return "get 요청 => /api/test name => %s".formatted(name == null ? "[null data]" : name);
 	}
 	
 	@GetMapping("/test/{id}")
 	public String apiWorkGetId(@PathVariable(value="id") String id) {
 			
-		return "get 요청 => /api/hello param id => %s".formatted(id);
+		return "get 요청 => /api/test param id => %s".formatted(id);
 	}
 	
 	@PostMapping("/test") 
 	public String apiWorkPost() {
-		return "post 요청 => /api/hello";
+		return "post 요청 => /api/test";
 	}
 	
 	@GetMapping("/tests") 

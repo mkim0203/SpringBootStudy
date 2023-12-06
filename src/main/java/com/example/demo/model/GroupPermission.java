@@ -6,5 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class GroupPermission {
-    private GroupPermissonCode permission;
+    private GroupPermissionCode permission;
 }

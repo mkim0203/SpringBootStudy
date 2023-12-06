@@ -16,7 +16,7 @@ import java.util.Map;
 
 @Api(tags="추가 설정 조회")
 @RestController
-@RequestMapping("/custom-data")
+@RequestMapping("/application-properties")
 public class CustomDataController {
 
 	@Value("${customData.projectName}")
@@ -57,7 +57,7 @@ public class CustomDataController {
 	Settings setting;
 
 	@ApiOperation(value="서버 설정 조회", notes="서버 설정 조회")
-	@GetMapping("/config/servers")
+	@GetMapping("/servers")
 	public Settings getSettings() {
 		System.out.println(setting);
 		return setting;
@@ -68,7 +68,7 @@ public class CustomDataController {
 	Appsetting setting2;
 
 	@ApiOperation(value="App 설정 조회", notes="App 설정 조회")
-	@GetMapping("/config/app-settings")
+	@GetMapping("/app-settings")
 	public Appsetting getSettings2() {
 		return setting2;
 	}

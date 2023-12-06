@@ -9,7 +9,10 @@ import javax.persistence.Id;
 @Entity
 public class Employee {
 
-  private @Id @GeneratedValue Long id;
+  @Id
+  // 시퀀스 필요한듯.
+//  @GeneratedValue
+  private  Long id;
   private String name;
   private String role;
 
