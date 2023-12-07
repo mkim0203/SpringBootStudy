@@ -65,6 +65,7 @@ public class ExceptionAdvice {
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	ResultModel<String> runtimeHandler(RuntimeException ex) {
 		System.out.println("runtimeHandler");
+		System.out.println(ex.toString());
 		ResultModel<String> retValue = new ResultModel<String>();
 		retValue.setCode(ResultCode.RUNTIME_ERROR);
 //		retValue.setCode("RUNTIME_ERROR");
