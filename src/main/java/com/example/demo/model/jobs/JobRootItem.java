@@ -1,17 +1,14 @@
 package com.example.demo.model.jobs;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.example.demo.model.jobs.table.JobsRoot;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Getter
-@Setter
+
 @Table(name = "JOBS_ROOT")
 @Entity
-public class JobRootItem extends BaseJobItem {
+public class JobRootItem extends JobsRoot {
     public JobRootItem() {
         super();
     }

@@ -40,7 +40,7 @@ create table JOBS_SUB1 (
     root_code varchar(1) not null,
     name varchar(255) not null,
     primary key (code),
-    FOREIGN KEY (root_code) REFERENCES JOBS_ROOT(code) ON UPDATE CASCADE
+    FOREIGN KEY (root_code) REFERENCES JOBS_ROOT(code) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- 소분류 코드
@@ -49,7 +49,7 @@ create table JOBS_SUB2 (
     sub1_code varchar(2) not null,
     name varchar(255) not null,
     primary key (code),
-    FOREIGN KEY (sub1_code) REFERENCES JOBS_SUB1(code) ON UPDATE CASCADE
+    FOREIGN KEY (sub1_code) REFERENCES JOBS_SUB1(code) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- 세분류 코드
@@ -58,7 +58,7 @@ create table JOBS_SUB3 (
     sub2_code varchar(3) not null,
     name varchar(255) not null,
     primary key (code),
-    FOREIGN KEY (sub2_code) REFERENCES JOBS_SUB2(code) ON UPDATE CASCADE
+    FOREIGN KEY (sub2_code) REFERENCES JOBS_SUB2(code) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- 세세분류 코드
@@ -67,6 +67,6 @@ create table JOBS_SUB4 (
     sub3_code varchar(4) not null,
     name varchar(255) not null,
     primary key (code),
-    FOREIGN KEY (sub3_code) REFERENCES JOBS_SUB3(code) ON UPDATE CASCADE
+    FOREIGN KEY (sub3_code) REFERENCES JOBS_SUB3(code) ON UPDATE CASCADE ON DELETE CASCADE
 );
 

@@ -4,6 +4,7 @@ import com.example.demo.model.jobs.*;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
+import java.util.Optional;
 
 @Validated
 public interface IJobService {
@@ -15,11 +16,20 @@ public interface IJobService {
 
     List<JobRootJoinItem> getJobRootJoinAll();
 
+    Optional<JobRootJoinItem> getJobRootJoinAByRootId(String rootCode);
+
+    Boolean deleteSub2ById(String code);
+
     List<JobRootJoinItem> searchSub1NameLike(String keyword);
     List<JobRootJoinItem> searchSub1NameLikeOrName2Like(String keyword, String keyword2);
     List<JobRootJoinItem> searchSub1CodeIn(List<String> codes);
 
     List<JobRootJoinItem> searchSub1CodeQuery(String code);
 
-    List<JobTemp1Item> searchSub1CodeNativeQuery(String code);
+
+    Optional<JobR1joinItem> searchSubCode(String code);
+
+    Boolean save(JobRootJoinItem row);
+
+    Boolean saveSub3(JobSub3Item row);
 }
