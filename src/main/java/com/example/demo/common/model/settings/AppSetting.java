@@ -1,8 +1,6 @@
 package com.example.demo.common.model.settings;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -10,11 +8,9 @@ import org.springframework.stereotype.Component;
  * yaml 프로퍼티 설정 테스트
  */
 @Component
-@Setter
-@Getter
 @ConfigurationProperties("appsetting")
-@NoArgsConstructor
-public class Appsetting {
+@Data
+public class AppSetting {
 	private String projectName;
 	private String aaaa;
 	private ModelData modelData;

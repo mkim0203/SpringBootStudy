@@ -18,5 +18,4 @@ public class BaseTest {
 		log.trace("테스트 코드 로그 출력 (object) ==>");
 		log.trace(obj.toString());
 	}
-	
 }

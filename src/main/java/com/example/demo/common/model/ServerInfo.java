@@ -1,10 +1,10 @@
 package com.example.demo.common.model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 public class ServerInfo {
 	private String ip;
 	private String hostName;

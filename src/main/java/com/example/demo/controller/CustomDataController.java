@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.common.model.Settings;
-import com.example.demo.common.model.settings.Appsetting;
+import com.example.demo.common.model.settings.AppSetting;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -65,11 +65,11 @@ public class CustomDataController {
 
 	
 	@Autowired
-	Appsetting setting2;
+	AppSetting setting2;
 
 	@ApiOperation(value="App 설정 조회", notes="App 설정 조회")
 	@GetMapping("/app-settings")
-	public Appsetting getSettings2() {
+	public AppSetting getSettings2() {
 		return setting2;
 	}
 }

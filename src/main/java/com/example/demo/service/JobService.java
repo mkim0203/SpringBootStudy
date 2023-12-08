@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -24,6 +25,9 @@ public class JobService implements IJobService {
     JobSub4Repository _jobSub4Dao;
     @Autowired
     JobRootJoinRepository _jobRootJoinDao;
+
+    @Autowired
+    JobR1JoinPepository _jobR1JoinDao;
 
     public List<JobRootItem> getJobRootAll() {
         return _jobRootDao.findAll();
@@ -55,6 +59,17 @@ public class JobService implements IJobService {
     }
 
     @Override
+    public Optional<JobRootJoinItem> getJobRootJoinAByRootId(String rootCode) {
+        return _jobRootJoinDao.findById(rootCode);
+    }
+
+    @Override
+    public Boolean deleteSub2ById(String code) {
+        _jobSub2Dao.deleteById(code);
+        return true;
+    }
+
+    @Override
     public List<JobRootJoinItem> searchSub1NameLike(String keyword) {
         return _jobRootJoinDao.findBySub1List_NameContaining(keyword);
     }
@@ -75,12 +90,21 @@ public class JobService implements IJobService {
     }
 
     @Override
-    public List<JobTemp1Item> searchSub1CodeNativeQuery(String code) {
-        List<JobTemp1Item> result = _jobRootJoinDao.findBySub1Code2(code);
-        for (JobTemp1Item item : result) {
-            System.out.println(item.toString());
-        }
-
-        return result;
+    public Optional<JobR1joinItem> searchSubCode(String code) {
+        return _jobR1JoinDao.findById(code);
     }
+
+    @Override
+    public Boolean save(JobRootJoinItem row) {
+        _jobRootJoinDao.save(row);
+        return true;
+    }
+
+    @Override
+    public Boolean saveSub3(JobSub3Item row) {
+        _jobSub3Dao.save(row);
+        return true;
+    }
+
+
 }

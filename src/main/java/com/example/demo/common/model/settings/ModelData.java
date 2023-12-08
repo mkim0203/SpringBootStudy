@@ -1,7 +1,10 @@
 package com.example.demo.common.model.settings;
 
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 public class ModelData {
 //	item1: 11
 //    item2: "22"

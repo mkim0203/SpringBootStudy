@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -105,12 +106,51 @@ public class JobV1Controller {
 
         return retValue;
     }
-    @GetMapping("/roots/sub1s/native-query")
-    public ResultModel<List<JobTemp1Item>> searchSub1Code3(@RequestParam String code) {
-        ResultModel<List<JobTemp1Item>> retValue = new ResultModel<>();
-        retValue.setData(_service.searchSub1CodeNativeQuery(code));
+
+    @GetMapping("/roots/sub1s/{sub1-code}}")
+    public ResultModel<Optional<JobR1joinItem>> searchR1Sub1Code(@PathVariable(name = "sub1-code") String code) {
+        ResultModel<Optional<JobR1joinItem>> retValue = new ResultModel<>();
+        retValue.setData(_service.searchSubCode(code));
         retValue.setCode(ResultCode.SUCCESS);
 
         return retValue;
     }
+
+    @PostMapping("/roots")
+    public ResultModel<Boolean> searchR1Sub1Code(@RequestBody JobRootJoinItem data) {
+        ResultModel<Boolean> retValue = new ResultModel<>();
+        retValue.setData(_service.save(data));
+        retValue.setCode(ResultCode.SUCCESS);
+
+        return retValue;
+    }
+
+    @PostMapping("/sub3")
+    public ResultModel<Boolean> searchR1Sub1Code(@RequestBody JobSub3Item data) {
+        ResultModel<Boolean> retValue = new ResultModel<>();
+        retValue.setData(_service.saveSub3(data));
+        retValue.setCode(ResultCode.SUCCESS);
+
+        return retValue;
+    }
+
+
+    @GetMapping("/roots/{root-code}")
+    public ResultModel<Optional<JobRootJoinItem>> searchRootSub1All(@PathVariable(name = "root-code") String rootCode) {
+        ResultModel<Optional<JobRootJoinItem>> retValue = new ResultModel<>();
+        retValue.setData(_service.getJobRootJoinAByRootId(rootCode));
+        retValue.setCode(ResultCode.SUCCESS);
+
+        return retValue;
+    }
+
+    @DeleteMapping("/sub2/{code}")
+    public ResultModel<Boolean> deleteSub2ById(@PathVariable String code) {
+        ResultModel<Boolean> retValue = new ResultModel<>();
+        retValue.setData(_service.deleteSub2ById(code));
+        retValue.setCode(ResultCode.SUCCESS);
+
+        return retValue;
+    }
+
 }

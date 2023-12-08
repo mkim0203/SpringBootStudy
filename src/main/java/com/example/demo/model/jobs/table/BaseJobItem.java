@@ -1,5 +1,6 @@
-package com.example.demo.model.jobs;
+package com.example.demo.model.jobs.table;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,8 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 
-@Setter
-@Getter
+@Data
 @MappedSuperclass
 public class BaseJobItem {
     // 상속용 클래스 이면 MappedSuperclass 필요함...

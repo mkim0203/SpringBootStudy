@@ -10,6 +10,10 @@ import com.example.demo.service.IWorkService;
 import com.example.demo.service.WorkService;
 import com.example.demo.test.BaseTest;
 
+import javax.validation.ConstraintViolationException;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 @SpringBootTest
 public class WorkServiceTest extends BaseTest {
 
@@ -52,14 +56,20 @@ public class WorkServiceTest extends BaseTest {
 		}
 	}
 
+
 	@Test
 	public void update() {
+		ConstraintViolationException exception = assertThrows(ConstraintViolationException.class, () -> {
+			workService.update(null);
+		});
 
-		workService.update(null);
+		WriteLog(exception);
 	}
 
 	@Test
 	public void test() {
-		workService.test(null);
+		ConstraintViolationException exception = assertThrows(ConstraintViolationException.class, () -> {
+			workService.test(null);
+		});
 	}
 }

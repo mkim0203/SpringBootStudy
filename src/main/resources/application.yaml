@@ -11,8 +11,8 @@ appsetting:
       - cc
       - dd
   
-jwt:
-  key: "123456789a00!!"
+#jwt:
+#  key: "123456789a00!!"
   
   
 # 로그레벨 설정
