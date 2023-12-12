@@ -25,3 +25,8 @@
     DB, hibernate DTO 구성
     aop 구성하여 로그 및 jwt 인증 체크
     ControllerAdvice 웹 예외처리
+    Scheduler 구성 "@Scheduled"
+    
+## 테스트 코드
+    Web Client 테스트
+    
