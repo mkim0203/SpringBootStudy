@@ -27,4 +27,11 @@ public class JobScheduler {
     public void allMinSec7Job() throws Exception {
         log.info(String.format(_outputFmt, _dtFmt.format(new Date()), "allMinSec7Job"));
     }
+
+
+    // error
+//    @Scheduled(fixedDelay = 0)
+//    public void myTask() {
+//        log.info("1회용???");
+//    }
 }

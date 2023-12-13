@@ -1,5 +1,6 @@
 package com.example.demo.test;
 
+import com.example.demo.test.models.SampleData;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +45,28 @@ public class WebClientTests  extends  BaseTest{
             WebClient.ResponseSpec response = webClient.post()
                     .contentType(org.springframework.http.MediaType.APPLICATION_JSON) // 컨텐츠 타입 설정
                     .body(BodyInserters.fromValue(jsonData)).retrieve();
+
+            ResponseEntity<String> responseEntire =
+                    response.toEntity(String.class)
+                            .block();
+
+            // 응답 코드와 응답 본문 출력
+            WriteDebug("Response Code: " + responseEntire.getStatusCode());
+            WriteDebug("Response Body: " + responseEntire.getBody());
+        } catch (WebClientResponseException webEx) {
+            WriteWebClientResponseException(webEx);
+        }
+    }
+
+    @Test void postRequest_Model객체사용() {
+        String url = "http://localhost:5121/users";
+        SampleData sendData = new SampleData("terter", "테스터");
+
+        try {
+            WebClient webClient = WebClient.create(url);
+            WebClient.ResponseSpec response = webClient.post()
+                    .contentType(org.springframework.http.MediaType.APPLICATION_JSON) // 컨텐츠 타입 설정
+                    .body(BodyInserters.fromValue(sendData)).retrieve();
 
             ResponseEntity<String> responseEntire =
                     response.toEntity(String.class)
