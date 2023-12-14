@@ -7,12 +7,12 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
 @Slf4j
-public class QuartzJob implements Job {
+public class QzSche1Job implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        log.debug("quartz job execute.....");
+        log.debug("run QzSche1Job");
         JobDataMap dataMap = jobExecutionContext.getJobDetail().getJobDataMap();
-
-
+        Object paraData = dataMap.get("param");
+        log.debug(paraData.toString());
     }
 }

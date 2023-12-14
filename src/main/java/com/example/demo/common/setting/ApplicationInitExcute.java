@@ -1,6 +1,8 @@
 package com.example.demo.common.setting;
 
+import com.example.demo.model.qz.QzSche1;
 import com.example.demo.scheduler.QuartzJob;
+import com.example.demo.scheduler.QzSche1Job;
 import com.example.demo.service.QuartzService;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
@@ -34,6 +36,11 @@ public class ApplicationInitExcute {
             // quartz 설정
             _qzService.addJob("job1", QuartzJob.class, "8 * * * * ?");
             _qzService.addJob("job2", QuartzJob.class, "22 * * * * ?");
+
+            QzSche1 sche1Data = new QzSche1();
+            sche1Data.setData1("AA");
+            sche1Data.setData2(22);
+            _qzService.addJob("sche1", QzSche1Job.class, "33 * * * * ?", sche1Data);
             //runQuartz();
         } catch (Exception e) {
             log.error(e.getStackTrace().toString());
