@@ -41,9 +41,11 @@
         JAVA_HOME을 인텔리제이에서 받은 sdk 위치로 잡아주니 빌드 성공.
         단. 환경변수 변경시 'cmd' 창을 닫았다가 켜야함.
 
-        JAVA_HOME 없이 빌드 할려면 pom.xml에 프로퍼티 추가후 plugin 설정
 
-## JAVA_HOME 없이 빌드
+~~JAVA_HOME 없이 빌드 할려면 pom.xml에 프로퍼티 추가후 plugin 설정~~
+JAVA_HOME 환경 변수는 무조건 있어야 하는것으로 보임.
+
+## 빌드 jdk 위치 지정.
     * pom.xml 설정 'JAVA_17_HOME' 설정후 plugin 에서 사용
     <properties>
         <JAVA_17_HOME>C:\Users\mhkim\.jdks\corretto-17.0.9</JAVA_17_HOME>

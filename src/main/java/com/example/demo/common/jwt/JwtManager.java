@@ -12,7 +12,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-@PropertySource(value = "application.properties")
+//@PropertySource(value = "application.properties")
 @Component
 public class JwtManager {
 	@Value("${jwt.key}")
