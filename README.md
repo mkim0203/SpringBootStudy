@@ -45,7 +45,9 @@
 ~~JAVA_HOME 없이 빌드 할려면 pom.xml에 프로퍼티 추가후 plugin 설정~~
 JAVA_HOME 환경 변수는 무조건 있어야 하는것으로 보임.
 
-## 빌드 jdk 위치 지정.
+~~## 빌드 jdk 위치 지정.~~
+    * 안되는거 같음......
+
     * pom.xml 설정 'JAVA_17_HOME' 설정후 plugin 에서 사용
     <properties>
         <JAVA_17_HOME>C:\Users\mhkim\.jdks\corretto-17.0.9</JAVA_17_HOME>
@@ -62,5 +64,17 @@ JAVA_HOME 환경 변수는 무조건 있어야 하는것으로 보임.
     </plugin>
     
 
-    * 빌드
-    $> mvn install -DskipTests
+## 빌드
+    * 필요시 메이븐 및 빌드 캐시정보 삭제
+        C:\Users\[pc 이름]\.m2\repository (maven 캐시 파일)
+        pox.xml 폴더 아래 /target 폴더 (빌드 파일 및 빌드 캐시)
+    $> mvn install -DskipTests -X
+
+## 빌드 상세보기
+    * 상세보기로 jdk 위치 확인하는게 속이 편한듯
+
+    PS C:\Study-src\SpringBootStudy> mvn install -DskipTests -X
+    Apache Maven 3.9.6 (bc0240f3c744dd6b6ec2920b3cd08dcc295161ae)
+    Maven home: C:\maven\apache-maven-3.9.6
+    Java version: 17.0.9, vendor: Amazon.com Inc., runtime: C:\Users\mhkim\.jdks\corretto-17.0.9
+    Default locale: ko_KR, platform encoding: MS949

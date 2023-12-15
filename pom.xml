@@ -16,7 +16,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
-		<JAVA_17_HOME>C:\Users\mhkim\.jdks\corretto-17.0.9</JAVA_17_HOME>
+<!--		<JAVA_17_HOME>C:\Users\mhkim\.jdks\corretto-17.0.9</JAVA_17_HOME>-->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -124,15 +124,15 @@
 <!--				</configuration>-->
 <!--			</plugin>-->
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.9.0</version>
-				<configuration>
-					<executable>${JAVA_17_HOME}/Contents/Home/bin/javac</executable>
-					<compilerVersion>17</compilerVersion>
-				</configuration>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-compiler-plugin</artifactId>-->
+<!--				<version>3.9.0</version>-->
+<!--				<configuration>-->
+<!--					<executable>${JAVA_17_HOME}/Contents/Home/bin/javac</executable>-->
+<!--					<compilerVersion>17</compilerVersion>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 
