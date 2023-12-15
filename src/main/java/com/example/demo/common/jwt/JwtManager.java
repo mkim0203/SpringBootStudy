@@ -4,14 +4,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.example.demo.common.aop.RunningLog;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+@PropertySource(value = "application.properties")
 @Component
 public class JwtManager {
 	@Value("${jwt.key}")

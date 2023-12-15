@@ -4,13 +4,12 @@ import com.example.demo.model.QzJobStatus;
 import com.example.demo.model.qz.BaseQzData;
 import com.example.demo.scheduler.QuartzJob;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.buf.StringUtils;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
+import javax.annotation.PostConstruct;
 import java.util.*;
 
 @Slf4j
@@ -19,10 +18,8 @@ public class QuartzService {
     SchedulerFactory _factory = new StdSchedulerFactory();
     Scheduler _scheduler = null;
 
-    public QuartzService() {
-        init();
-    }
 
+    @PostConstruct
     private void init() {
         try {
             _scheduler = _factory.getScheduler();
