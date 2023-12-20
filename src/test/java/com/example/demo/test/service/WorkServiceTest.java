@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.Work;
 import com.example.demo.service.IWorkService;
-import com.example.demo.service.WorkService;
 import com.example.demo.test.BaseTest;
 
 import javax.validation.ConstraintViolationException;
@@ -23,21 +22,21 @@ public class WorkServiceTest extends BaseTest {
 	@Test
 	public void getAll() {
 		var result = workService.getAll();
-		WriteLog(result);
+		writeLog(result);
 	}
 
 	@Test
 	public void get() {
 		int workNumber = 1;
 		var result = workService.get(workNumber);
-		WriteLog(result);
+		writeLog(result);
 	}
 
 	@Test
 	public void getList() {
 		String workNameLike = "work";
 		var result = workService.getList(workNameLike);
-		WriteLog(result);
+		writeLog(result);
 	}
 
 	/**
@@ -52,7 +51,7 @@ public class WorkServiceTest extends BaseTest {
 		try {
 			workService.insert(data);
 		} catch (Exception e) {
-			WriteLog(e);
+			writeLog(e);
 		}
 	}
 
@@ -63,7 +62,7 @@ public class WorkServiceTest extends BaseTest {
 			workService.update(null);
 		});
 
-		WriteLog(exception);
+		writeLog(exception);
 	}
 
 	@Test

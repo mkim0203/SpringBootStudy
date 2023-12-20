@@ -1,6 +1,5 @@
 package com.example.demo.test.service;
 
-import com.example.demo.common.aop.RunningLog;
 import com.example.demo.common.jwt.JwtManager;
 import com.example.demo.test.BaseTest;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,7 @@ public class JwtServiceTest extends BaseTest {
     @Test
     public void 토큰생성() {
         var result = _jwtService.generateJwtToken("mkim", "USER");
-        WriteLog(result);
+        writeLog(result);
     }
 
     @Test
@@ -27,7 +26,7 @@ public class JwtServiceTest extends BaseTest {
     public void 토큰에서_사용자정보_가져오기() {
         var result = _jwtService.generateJwtToken("mkim", "USER");
         String userId = _jwtService.getUserIdFromToken(result);
-        WriteLog(userId);
+        writeLog(userId);
     }
 
 
@@ -37,7 +36,7 @@ public class JwtServiceTest extends BaseTest {
     public void 토큰에서_룰정보_가져오기() {
         var result = _jwtService.generateJwtToken("mkim", "USER");
         String rule = _jwtService.getMemberRoleSetFromToken(result);
-        WriteLog(rule);
+        writeLog(rule);
     }
 
 }
