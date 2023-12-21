@@ -27,6 +27,7 @@ public class MyBatisConfig {
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
+//        sessionFactory.setTypeAliasesPackage("com.example.demo.mapper");
 
         // MyBatis 설정 추가...
 

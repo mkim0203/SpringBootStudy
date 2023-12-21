@@ -3,7 +3,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.demo.mapper.JobRootMapper">
+
     <select id="selectTest" resultType="string">
         select 'test'
+    </select>
+
+    <select id="getJobRoot"
+            parameterType="com.example.demo.model.jobs.JobRootItem"
+            resultType="com.example.demo.model.jobs.JobRootItem">
+        SELECT * FROM JOBS_ROOT WHERE code = #{code}
     </select>
 </mapper>
