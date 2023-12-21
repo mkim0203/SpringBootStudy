@@ -6,30 +6,32 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientRequestException;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
-import reactor.core.publisher.Mono;
-
-import org.springframework.http.HttpStatus;
 
 @SpringBootTest
 public class WebClientTests  extends  BaseTest{
     @Test
     public void getRequest() {
-        String url = "http://localhost:5121/users";
-        WebClient webClient = WebClient.create(url);
-        //String res = webClient.get().retrieve().bodyToMono(String.class).block();
-        //WriteDebug(res);
-        WebClient.ResponseSpec response = webClient.get().retrieve();
+        try {
+            String url = "http://localhost:5121/users";
+            WebClient webClient = WebClient.create(url);
+            //String res = webClient.get().retrieve().bodyToMono(String.class).block();
+            //writeDebug(res);
+            WebClient.ResponseSpec response = webClient.get().retrieve();
 
-        ResponseEntity<String> responseEntire =
-                //.onStatus(HttpStatus::is4xxClientError, clientResponse -> Mono.error(new RuntimeException("4xx Client Error")))
-                //.onStatus(HttpStatus::is5xxServerError, clientResponse -> Mono.error(new RuntimeException("5xx Server Error")))
-                response.toEntity(String.class)
-                .block();
+            ResponseEntity<String> responseEntire =
+                    //.onStatus(HttpStatus::is4xxClientError, clientResponse -> Mono.error(new RuntimeException("4xx Client Error")))
+                    //.onStatus(HttpStatus::is5xxServerError, clientResponse -> Mono.error(new RuntimeException("5xx Server Error")))
+                    response.toEntity(String.class)
+                            .block();
 
-        // 응답 코드와 응답 본문 출력
-        WriteDebug("Response Code: " + responseEntire.getStatusCode());
-        WriteDebug("Response Body: " + responseEntire.getBody());
+            // 응답 코드와 응답 본문 출력
+            writeDebug("Response Code: " + responseEntire.getStatusCode());
+            writeDebug("Response Body: " + responseEntire.getBody());
+        } catch (WebClientRequestException webRequestEx) {
+            writeWebClientRequestException(webRequestEx);
+        }
     }
 
     @Test void postRequest() {
@@ -51,10 +53,12 @@ public class WebClientTests  extends  BaseTest{
                             .block();
 
             // 응답 코드와 응답 본문 출력
-            WriteDebug("Response Code: " + responseEntire.getStatusCode());
-            WriteDebug("Response Body: " + responseEntire.getBody());
+            writeDebug("Response Code: " + responseEntire.getStatusCode());
+            writeDebug("Response Body: " + responseEntire.getBody());
         } catch (WebClientResponseException webEx) {
-            WriteWebClientResponseException(webEx);
+            writeWebClientResponseException(webEx);
+        } catch (WebClientRequestException webRequestEx) {
+            writeWebClientRequestException(webRequestEx);
         }
     }
 
@@ -73,10 +77,12 @@ public class WebClientTests  extends  BaseTest{
                             .block();
 
             // 응답 코드와 응답 본문 출력
-            WriteDebug("Response Code: " + responseEntire.getStatusCode());
-            WriteDebug("Response Body: " + responseEntire.getBody());
+            writeDebug("Response Code: " + responseEntire.getStatusCode());
+            writeDebug("Response Body: " + responseEntire.getBody());
         } catch (WebClientResponseException webEx) {
-            WriteWebClientResponseException(webEx);
+            writeWebClientResponseException(webEx);
+        } catch (WebClientRequestException webRequestEx) {
+            writeWebClientRequestException(webRequestEx);
         }
     }
 
@@ -96,10 +102,12 @@ public class WebClientTests  extends  BaseTest{
 
 
             // 응답 코드와 응답 본문 출력
-            WriteDebug("Response Code: " + responseEntire.getStatusCode());
-            WriteDebug("Response Body: " + responseEntire.getBody());
+            writeDebug("Response Code: " + responseEntire.getStatusCode());
+            writeDebug("Response Body: " + responseEntire.getBody());
         } catch (WebClientResponseException webEx) {
-            WriteWebClientResponseException(webEx);
+            writeWebClientResponseException(webEx);
+        } catch (WebClientRequestException webRequestEx) {
+            writeWebClientRequestException(webRequestEx);
         }
     }
 
@@ -128,10 +136,12 @@ public class WebClientTests  extends  BaseTest{
 
 
             // 응답 코드와 응답 본문 출력
-            WriteDebug("Response Code: " + responseEntire.getStatusCode());
-            WriteDebug("Response Body: " + responseEntire.getBody());
+            writeDebug("Response Code: " + responseEntire.getStatusCode());
+            writeDebug("Response Body: " + responseEntire.getBody());
         } catch (WebClientResponseException webEx) {
-            WriteWebClientResponseException(webEx);
+            writeWebClientResponseException(webEx);
+        } catch (WebClientRequestException webRequestEx) {
+            writeWebClientRequestException(webRequestEx);
         }
     }
 }

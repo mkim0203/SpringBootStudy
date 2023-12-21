@@ -15,11 +15,11 @@ public class AppSettingTests extends BaseTest {
     Settings _settings;
     @Test
     public void Yaml_설정조회() {
-        WriteLog(_appSetting);
+        writeLog(_appSetting);
     }
     
     @Test
     public void Properties_설정조회() {
-        WriteLog(_settings);
+        writeLog(_settings);
     }
 }

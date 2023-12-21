@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 
 import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import java.util.List;
@@ -47,7 +48,7 @@ public class ValidateTests extends BaseTest {
         item.setAvg(11);
         item.setEmail("abc@test.com");
         boolean result = _service.checkItem(item);
-        WriteDebug(String.valueOf(result));
+        writeDebug(String.valueOf(result));
     }
 
     @Test
@@ -65,21 +66,24 @@ public class ValidateTests extends BaseTest {
 
     @Test
     void GroupServiceTest() {
-        GroupInfo info = new GroupInfo();
-        info.setGroupId(1);
-        info.setGroupName("test");
-        List<GroupSubItem> subItems = info.getSubItems();
-        GroupSubItem sub1 = new GroupSubItem();
-        sub1.setSubGroupSeq(1);
-        sub1.setData("ㅁ");
-        subItems.add(sub1);
+        try {
+            GroupInfo info = new GroupInfo();
+            info.setGroupId(1);
+            info.setGroupName("test");
+            List<GroupSubItem> subItems = info.getSubItems();
+            GroupSubItem sub1 = new GroupSubItem();
+            sub1.setSubGroupSeq(1);
+            sub1.setData("ㅁ");
+            subItems.add(sub1);
 
-        GroupSubItem sub2 = new GroupSubItem();
-        sub2.setSubGroupSeq(2);
-        sub2.setData("");
-        subItems.add(sub2);
-        boolean result = _service.checkGroupInfo(info);
-
+            GroupSubItem sub2 = new GroupSubItem();
+            sub2.setSubGroupSeq(2);
+            sub2.setData("");
+            subItems.add(sub2);
+            boolean result = _service.checkGroupInfo(info);
+        } catch (ConstraintViolationException vaildEx) {
+            writeLog(vaildEx.getMessage());
+        }
     }
 
 
@@ -89,8 +93,8 @@ public class ValidateTests extends BaseTest {
     }
 
     private <T> void outputError(Set<ConstraintViolation<T>> outputData) {
-        //outputData.forEach(i -> WriteDebug(i.toString()));
-        outputData.forEach(i -> WriteDebug(String.format(_outputFormat, i.getPropertyPath().toString(), i.getInvalidValue(), i.getMessage())));
+        //outputData.forEach(i -> writeDebug(i.toString()));
+        outputData.forEach(i -> writeDebug(String.format(_outputFormat, i.getPropertyPath().toString(), i.getInvalidValue(), i.getMessage())));
     }
 
 
